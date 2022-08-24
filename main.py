@@ -33,23 +33,25 @@ class Contacts(db.Model):
     date = db.Column(db.String(12), nullable=True)
     email = db.Column(db.String(20), nullable=False)
 
-class posts(db.Model):
+class Posts(db.Model):
     sno = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(150), nullable=False)
     slug = db.Column(db.String(21), nullable=False)
     content = db.Column(db.String(120), nullable=False)
+    tagline = db.Column(db.String(120), nullable=False)
     date = db.Column(db.String(12), nullable=True)
-    img_file = db.Column(db.String(500), nullable=False)
+    img_file = db.Column(db.String(500), nullable=True)
     
 
 @app.route("/")
 def home():
+    posts = Posts.query.filter_by().all() [0:5]
 
-    return render_template("index.html", params = params)
+    return render_template("index.html", params = params, posts=posts)
 
 @app.route("/post/<string:post_slug>", methods =['GET'])
 def post_route(post_slug):
-    post = posts.query.filter_by(slug=post_slug).first()
+    post = Posts.query.filter_by(slug=post_slug).first()
 
     return render_template ("post.html",params = params, post = post)
 

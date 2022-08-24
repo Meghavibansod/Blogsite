@@ -10,7 +10,10 @@
        "blog_name" : "Coding Stuffs",
        "tag_line": "Code with Meghavi",
        "gmail-user": "meghavi1b@gmail.com",
-       "gmail-password": "meghavi@987"
+       "gmail-password": "meghavi@987",
+       "about-text": "Hi, my name is Meghavi.",
+       "no_of_post": 5,
+       "gmail-password": "meghavi@987"  
 
     }
 
