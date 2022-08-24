@@ -1,0 +1,19 @@
+{
+    "params":
+    {
+       "local_server" : "True",
+       "local_uri" :"mysql://root:@localhost/codingstuffs" ,
+       "prod_uri" : "mysql://root:@localhost/codingstuffs",
+       "fb_url":"https://facebook.com/codingstuffs",
+       "tw_url":"https://twitter.com/codingstuffs",
+       "gh_url": "https://github.com/codingstuffs",
+       "blog_name" : "Coding Stuffs",
+       "tag_line": "Code with Meghavi",
+       "gmail-user": "meghavi1b@gmail.com",
+       "gmail-password": "meghavi@987"
+
+    }
+
+
+
+}
