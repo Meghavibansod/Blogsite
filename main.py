@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
-# from flask_mail import Mail
-import json
+from flask_mail import Mail
+import json 
 from datetime import datetime
 
 
@@ -45,7 +45,7 @@ class Posts(db.Model):
 
 @app.route("/")
 def home():
-    posts = Posts.query.filter_by().all() [0:5]
+    posts = Posts.query.filter_by().all() [0:params['no_of_posts']]
 
     return render_template("index.html", params = params, posts=posts)
 
@@ -58,6 +58,10 @@ def post_route(post_slug):
 @app.route("/about")
 def about():
     return render_template ("about.html",params = params)
+
+@app.route("/dashboard")
+def dashboard():
+    return render_template("login.html", params=params)
 
 
 # @app.route('/sample')
