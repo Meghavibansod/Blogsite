@@ -6,18 +6,19 @@ from datetime import datetime
 
 
 with open('config.json', 'r') as c:
-    params = json.load (c) ["params"]
+    params = json.load(c) ["params"]
 
 local_server = True
 app = Flask(__name__)
-# app.config.update(
-#     MAIL_SERVER = 'smtp.gmail.com',
-#     MAIL_PORT ='465',
-#     MAIL_USE_SSL= True,
-#     MAIL_USERNAME = params['gmail-user'],
-#     MAIL_PASSWORD = params['gmail-password']
-# )
-# mail = Mail(app)
+app.secret_key = 'super-secret-key'
+app.config.update(
+    MAIL_SERVER = 'smtp.gmail.com',
+    MAIL_PORT ='465',
+    MAIL_USE_SSL= True,
+    MAIL_USERNAME = params['gmail-user'],
+    MAIL_PASSWORD = params['gmail-password']
+)
+mail = Mail(app)
 if(local_server): 
  app.config["SQLALCHEMY_DATABASE_URI"] = params['local_uri']
 else:
@@ -59,8 +60,20 @@ def post_route(post_slug):
 def about():
     return render_template ("about.html",params = params)
 
-@app.route("/dashboard")
+@app.route("/dashboard", methods=["GET", "POST"])
 def dashboard():
+
+    if ("user" in session and session['user'] == params['admin_user']) :
+     return render_template("dashboard.html", params = params)
+
+    if request.method=="POST":
+        username = request.form.get("uname")
+        userpass= request.form.get("pass")
+        if (username == params["admin_user"] and userpass == params["admin_password"]):
+# set the session variable
+         session["user"] = username
+         return render_template("dashboard.html", params = params)
+
     return render_template("login.html", params=params)
 
 
