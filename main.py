@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail
 import json 
@@ -64,7 +64,8 @@ def about():
 def dashboard():
 
     if ("user" in session and session['user'] == params['admin_user']) :
-     return render_template("dashboard.html", params = params)
+     posts = Posts.query.all()
+     return render_template("dashboard.html", params = params, posts= posts)
 
     if request.method=="POST":
         username = request.form.get("uname")
@@ -72,7 +73,8 @@ def dashboard():
         if (username == params["admin_user"] and userpass == params["admin_password"]):
 # set the session variable
          session["user"] = username
-         return render_template("dashboard.html", params = params)
+         posts = Posts.query.all()
+         return render_template("dashboard.html", params = params, posts= posts)
 
     return render_template("login.html", params=params)
 
