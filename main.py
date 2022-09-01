@@ -83,6 +83,12 @@ def dashboard():
 # def sample():
 #     return render_template('post.html')
 
+@app.route("/edit/<string:sno>", methods=["GET", "POST"])
+def edit(sno):
+   if ("user" in session and session['user'] == params['admin_user']) :
+    if request.method == "POST":
+
+
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
