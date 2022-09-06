@@ -110,7 +110,7 @@ def edit(sno):
                 db.session.add(post)
                 db.session.commit()
 
-    return render_template("edit.html", params=params)
+    return render_template("edit.html", params=params, sno=sno)
 
 
 @app.route("/contact", methods=["GET", "POST"])
