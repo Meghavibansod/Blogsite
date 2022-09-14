@@ -15,7 +15,9 @@
        "no_of_posts": 5,
        "login_image": "login",
        "admin_user": "meghavi",
-       "admin_password": "meghavihere"
+       "admin_password": "meghavihere",
+       "upload_location": "C:\\Meghavi\\python\\python project\\Blog\\static"
+
 
 
 
